@@ -13,6 +13,15 @@ public class Teacher extends Person{
         this.yearsOfExperience = yearsOfExperience;
     }
 
+    public void printTeacherProperties(){
+        System.out.println("**** Print Teacher Properties ****");
+        System.out.println("Name: " +name);
+        System.out.println("LastName: " +lastName);
+        System.out.println("Age: " +age);
+        System.out.println("Years Of Experience: " +yearsOfExperience);
+        System.out.println("Teacher Code: " +teacherCode);
+    }
+
     public String getTeacherCode() {
         return teacherCode;
     }

@@ -20,7 +20,10 @@ public class Main {
             System.out.println("1. Create a Student");
             System.out.println("2. Create a Teacher");
             System.out.println("3. Create a Subject");
-            System.out.println("4.  Exit");
+            System.out.println("4. Print Students");
+            System.out.println("5. Print Teachers");
+            System.out.println("6. Print Subjects");
+            System.out.println("7.  Exit");
             System.out.println("Enter a option");
             option = scanner.nextInt();
 
@@ -36,16 +39,39 @@ public class Main {
                     teacherList.add (teacher);
                     break;
                 case 3:
+
                     Subject subject = createSubject(teacherList, studentList);
                     subjectList.add(subject);
-
-
                     break;
                 case 4:
-                    System.out.println("Exit");
+                    System.out.println();
+                    System.out.println("Summary of student admitted");
+                    for(Student st1: studentList){
+                        st1.printStudentProperties();
+                        System.out.println();
+                    }
+
+                    break;
+                case 5:
+                    System.out.println();
+                    System.out.println("Summary of teacher admitted");
+                    for(Teacher tch1: teacherList){
+                        tch1.printTeacherProperties();
+                        System.out.println();
+                    }
+                    break;
+                case 6:
+                    System.out.println();
+                    for(Subject sbj1 : subjectList ){
+                        sbj1.printSubjectProperties();
+                        System.out.println();
+                    }
+                    break;
+                case 7:
+                    System.out.println("****Exit****");
                     break;
             }
-        } while (option != 5);
+        } while (option != 7);
     }
 public static Student createStudent(){
         Scanner scStudent = new Scanner(System.in);
@@ -67,12 +93,12 @@ public static Student createStudent(){
     public static Teacher createTeacher(){
         Scanner scTeacher = new Scanner(System.in);
         System.out.println();
-        System.out.println("Student Creation");
-        System.out.println("Enter student name");
+        System.out.println("Teacher Creation");
+        System.out.println("Enter teacher name");
         String nameStudent = scTeacher.next();
-        System.out.println("Enter student lastname");
+        System.out.println("Enter teacher lastname");
         String lastNameStudent = scTeacher.next();
-        System.out.println("Enter student age");
+        System.out.println("Enter teacher age");
         int ageStudent = scTeacher.nextInt();
         System.out.println("Enter the teacher's code");
         String studentCode = scTeacher.next();
@@ -110,13 +136,16 @@ public static Student createStudent(){
 
         List<Student> students = new ArrayList<>();
 
-        System.out.println("Enter select a student: ");
-        printStudentList(studentList);
-        int studentOption = scSubject.nextInt();
-        Student student = studentList.get(studentOption - 1);
+        System.out.println("Please enter the no. Students to register: ");
+        int noOfStudent = scSubject.nextInt();
 
-        students.add(student);
-
+        for(int n = 0; n < noOfStudent; n++) {
+            System.out.println("Enter select a student: ");
+            printStudentList(studentList);
+            int studentOption = scSubject.nextInt();
+            Student student = studentList.get(studentOption - 1);
+            students.add(student);
+        }
         return new Subject(nameSubject,teacher,students);
     }
 }
